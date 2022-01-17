@@ -1,11 +1,9 @@
-name: OnlineTime
-prefix: OnlineTime
+name: HGStatistics
+prefix: HG-Statistics
 version: 1.2
-main: main.java.de.hufeisen_games.repo.online_time.OnlineTime
+main: main.java.de.hufeisen_games.repo.hgstatistics.HGStatistics
 api-version: 1.13
 authors: [Hufeisen]
 commands:
-  showonlinetime:
-    description: Shows you the Online Time Leaderboard!
-  showblockswalked:
-    description: Shows you the Blocks Walked Leaderboard!
+  leaderboard:
+     description: Shows you the leaderboards!

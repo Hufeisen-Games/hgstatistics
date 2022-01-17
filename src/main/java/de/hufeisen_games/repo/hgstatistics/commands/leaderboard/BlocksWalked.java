@@ -1,4 +1,4 @@
-package main.java.de.hufeisen_games.repo.online_time.commands;
+package main.java.de.hufeisen_games.repo.hgstatistics.commands.leaderboard;
 
 import java.util.TreeMap;
 import java.util.Map.Entry;
@@ -7,13 +7,16 @@ import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.Statistic;
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
-public class ShowWalkedBlocks implements CommandExecutor{
+import main.java.de.hufeisen_games.repo.hgstatistics.commands.type.SubCommand;
+
+public class BlocksWalked implements SubCommand{
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+		
+		sender.sendMessage("------------- Leaderboard (BlocksWalked) -------------");
 		
 		TreeMap<Integer, String> playerTime = new TreeMap<Integer, String>();
 		
@@ -31,11 +34,13 @@ public class ShowWalkedBlocks implements CommandExecutor{
 			      
 				if(entry.getValue() == name) {
 					place--;
-					sender.sendMessage("Platz "+place+" | "+name + ": " + entry.getKey()+" BlÃ¶cke ("+ entry.getKey()/20/60%60+") Minuten");
+					sender.sendMessage("Platz "+place+" | "+name + ": " + entry.getKey()+" Blöcke");
 					break;
 				}
 			}
 		}
+		
+		sender.sendMessage("");
 		
 		return false;
 	}
