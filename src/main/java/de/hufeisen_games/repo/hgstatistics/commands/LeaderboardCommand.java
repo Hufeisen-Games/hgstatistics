@@ -90,7 +90,18 @@ public class LeaderboardCommand implements CommandExecutor, TabCompleter {
 	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
 
 		if (args.length == 1) {
-			return new ArrayList<String>(subCommands.keySet());
+			
+			List<String> tab = new ArrayList<String>();
+			
+			for(String name : subCommands.keySet()) {
+				
+				if(sender.hasPermission("hgstatistics.leaderboard."+name) || sender.hasPermission("hgstatistics.leaderboard.all") || name.equalsIgnoreCase("help")) {
+					tab.add(name);
+				}
+				
+			}
+			
+			return tab;
 		}
 
 		return null;
@@ -100,8 +111,12 @@ public class LeaderboardCommand implements CommandExecutor, TabCompleter {
 	private boolean executeSubCommand(String name, CommandSender sender, Command command, String label, String[] args) {
 
 		if (subCommands.get(name.toLowerCase()) != null) {
-
-			subCommands.get(name).onCommand(sender, command, label, args);
+			
+			if(sender.hasPermission("hgstatistics.leaderboard."+name) || sender.hasPermission("hgstatistics.leaderboard.all") || name.equalsIgnoreCase("help")) {
+				subCommands.get(name.toLowerCase()).onCommand(sender, command, label, args);
+			} else {
+				sender.sendMessage(Messages.NO_PERMISSIONS);
+			}
 
 			return true;
 
