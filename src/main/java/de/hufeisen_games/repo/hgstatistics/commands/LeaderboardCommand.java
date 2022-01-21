@@ -15,13 +15,17 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 
 import main.java.de.hufeisen_games.repo.hgstatistics.Messages;
-import main.java.de.hufeisen_games.repo.hgstatistics.commands.leaderboard.Jump;
 import main.java.de.hufeisen_games.repo.hgstatistics.commands.leaderboard.Bells;
 import main.java.de.hufeisen_games.repo.hgstatistics.commands.leaderboard.BlocksWalked;
+import main.java.de.hufeisen_games.repo.hgstatistics.commands.leaderboard.CraftItem;
 import main.java.de.hufeisen_games.repo.hgstatistics.commands.leaderboard.Deaths;
+import main.java.de.hufeisen_games.repo.hgstatistics.commands.leaderboard.EntityKills;
 import main.java.de.hufeisen_games.repo.hgstatistics.commands.leaderboard.HelpCommand;
+import main.java.de.hufeisen_games.repo.hgstatistics.commands.leaderboard.ItemEnchant;
+import main.java.de.hufeisen_games.repo.hgstatistics.commands.leaderboard.Itembreak;
+import main.java.de.hufeisen_games.repo.hgstatistics.commands.leaderboard.Jump;
 import main.java.de.hufeisen_games.repo.hgstatistics.commands.leaderboard.Kills;
-import main.java.de.hufeisen_games.repo.hgstatistics.commands.leaderboard.NoteBlocksInteract;
+import main.java.de.hufeisen_games.repo.hgstatistics.commands.leaderboard.NoteBlocks;
 import main.java.de.hufeisen_games.repo.hgstatistics.commands.leaderboard.OnlineTime;
 import main.java.de.hufeisen_games.repo.hgstatistics.commands.type.SubCommand;
 
@@ -33,13 +37,18 @@ public class LeaderboardCommand implements CommandExecutor, TabCompleter {
 
 		subCommands = new HashMap<String, SubCommand>();
 
-		addSubCommand("onlinetime", new OnlineTime());
-		addSubCommand("blockswalked", new BlocksWalked());
-		addSubCommand("noteblocks", new NoteBlocksInteract());
-		addSubCommand("kills", new Kills());
-		addSubCommand("deaths", new Deaths());
-		addSubCommand("jump", new Jump());
 		addSubCommand("bells", new Bells());
+		addSubCommand("blockswalked", new BlocksWalked());
+		addSubCommand("craftitem", new CraftItem());
+		addSubCommand("deaths", new Deaths());
+		addSubCommand("entitykills", new EntityKills());
+		addSubCommand("itembreak", new Itembreak());
+		addSubCommand("itemenchant", new ItemEnchant());
+		addSubCommand("jump", new Jump());
+		addSubCommand("kills", new Kills());
+		addSubCommand("noteblocks", new NoteBlocks());
+		addSubCommand("onlinetime", new OnlineTime());
+		
 		addSubCommand("help", new HelpCommand());
 	}
 
