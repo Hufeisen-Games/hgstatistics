@@ -19,6 +19,7 @@ import main.java.de.hufeisen_games.repo.hgstatistics.commands.leaderboard.Jump;
 import main.java.de.hufeisen_games.repo.hgstatistics.commands.leaderboard.Bells;
 import main.java.de.hufeisen_games.repo.hgstatistics.commands.leaderboard.BlocksWalked;
 import main.java.de.hufeisen_games.repo.hgstatistics.commands.leaderboard.Deaths;
+import main.java.de.hufeisen_games.repo.hgstatistics.commands.leaderboard.HelpCommand;
 import main.java.de.hufeisen_games.repo.hgstatistics.commands.leaderboard.Kills;
 import main.java.de.hufeisen_games.repo.hgstatistics.commands.leaderboard.NoteBlocksInteract;
 import main.java.de.hufeisen_games.repo.hgstatistics.commands.leaderboard.OnlineTime;
@@ -26,7 +27,7 @@ import main.java.de.hufeisen_games.repo.hgstatistics.commands.type.SubCommand;
 
 public class LeaderboardCommand implements CommandExecutor, TabCompleter {
 
-	private HashMap<String, SubCommand> subCommands;
+	public static HashMap<String, SubCommand> subCommands;
 
 	public LeaderboardCommand() {
 
@@ -39,6 +40,7 @@ public class LeaderboardCommand implements CommandExecutor, TabCompleter {
 		addSubCommand("deaths", new Deaths());
 		addSubCommand("jump", new Jump());
 		addSubCommand("bells", new Bells());
+		addSubCommand("help", new HelpCommand());
 	}
 
 	private void addSubCommand(String name, SubCommand subCommand) {
@@ -51,7 +53,9 @@ public class LeaderboardCommand implements CommandExecutor, TabCompleter {
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
 		if (args.length != 1) {
-
+			
+			executeSubCommand("help", sender, command, label, args);
+			
 		} else {
 
 			if (!executeSubCommand(args[0], sender, command, label, args)) {
@@ -76,7 +80,7 @@ public class LeaderboardCommand implements CommandExecutor, TabCompleter {
 
 	private boolean executeSubCommand(String name, CommandSender sender, Command command, String label, String[] args) {
 
-		if (subCommands.get(name) != null) {
+		if (subCommands.get(name.toLowerCase()) != null) {
 
 			subCommands.get(name).onCommand(sender, command, label, args);
 
