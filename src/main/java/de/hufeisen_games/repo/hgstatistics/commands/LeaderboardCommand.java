@@ -89,19 +89,21 @@ public class LeaderboardCommand implements CommandExecutor, TabCompleter {
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
 
-		if (args.length == 1) {
-			
-			List<String> tab = new ArrayList<String>();
-			
-			for(String name : subCommands.keySet()) {
+		if(sender.hasPermission("hgstatistics.leaderboard")) {
+			if (args.length == 1) {
 				
-				if(sender.hasPermission("hgstatistics.leaderboard."+name) || sender.hasPermission("hgstatistics.leaderboard.all") || name.equalsIgnoreCase("help")) {
-					tab.add(name);
+				List<String> tab = new ArrayList<String>();
+				
+				for(String name : subCommands.keySet()) {
+					
+					if(sender.hasPermission("hgstatistics.leaderboard."+name) || sender.hasPermission("hgstatistics.leaderboard.all") || name.equalsIgnoreCase("help")) {
+						tab.add(name);
+					}
+					
 				}
 				
+				return tab;
 			}
-			
-			return tab;
 		}
 
 		return null;
