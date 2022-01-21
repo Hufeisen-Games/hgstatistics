@@ -24,7 +24,7 @@ public class NoteBlocksInteract implements SubCommand{
 			
 		}
 		
-		LeaderboardCommand.sendStatistics(sender, "Note Blocks Interact", playerStatistics);
+		LeaderboardCommand.sendStatistics(sender, "Note Blocks", playerStatistics);
 		
 		return false;
 	}

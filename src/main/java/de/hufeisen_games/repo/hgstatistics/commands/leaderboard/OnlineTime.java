@@ -24,7 +24,11 @@ public class OnlineTime implements SubCommand{
 			
 		}
 		
-		sender.sendMessage("------------- Leaderboard (Online Time) -------------");
+		sender.sendMessage("");
+		sender.sendMessage("");
+		sender.sendMessage("");
+		sender.sendMessage("§7--------- §6§lLeaderboard §6(Online Time) §7---------");
+		sender.sendMessage("");
 		
 		int place = unsortedMap.size()+1;
 		
@@ -33,10 +37,11 @@ public class OnlineTime implements SubCommand{
 		for(String name : playerStatistics.keySet()) {
 
 			place--;
-			sender.sendMessage("Platz "+place+" | "+name + ": " + playerStatistics.get(name)/20/60/60+" hours ("+ playerStatistics.get(name)/20/60%60+" minutes)");
-		
+			sender.sendMessage("§ePlace §l"+place+" §7| §a"+name + "§7: §c" + playerStatistics.get(name)/20/60/60+" hours §o("+ playerStatistics.get(name)/20/60%60+" minutes)");
 		}
 		
+		sender.sendMessage("");
+		sender.sendMessage("§7--------- §6§lLeaderboard §6(Online Time) §7---------");
 		sender.sendMessage("");
 		
 		return false;

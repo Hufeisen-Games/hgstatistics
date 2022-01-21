@@ -92,8 +92,11 @@ public class LeaderboardCommand implements CommandExecutor, TabCompleter {
 
 	public static void sendStatistics(CommandSender sender, String leaderBoardName, HashMap<String, Integer> unsortedMap) {
 		
-		sender.sendMessage("------------- Leaderboard ("+leaderBoardName+") -------------");
-		
+		sender.sendMessage("");
+		sender.sendMessage("");
+		sender.sendMessage("");
+		sender.sendMessage("§7--------- §6§lLeaderboard §6("+leaderBoardName+") §7---------");
+		sender.sendMessage("");
 		int place = unsortedMap.size()+1;
 		
 		HashMap<String, Integer> playerStatistics = LeaderboardCommand.sortByValue(unsortedMap);
@@ -101,12 +104,12 @@ public class LeaderboardCommand implements CommandExecutor, TabCompleter {
 		for(String name : playerStatistics.keySet()) {
 
 			place--;
-			sender.sendMessage("Place "+place+" | "+name + ": " + playerStatistics.get(name));
+			sender.sendMessage("§ePlace §l"+place+" §7| §a"+name + "§7: §c" + playerStatistics.get(name));
 		
 		}
-		
 		sender.sendMessage("");
-		
+		sender.sendMessage("§7--------- §6§lLeaderboard §6("+leaderBoardName+") §7---------");
+		sender.sendMessage("");
 	}
 	
 	public static HashMap<String, Integer> sortByValue(HashMap<String, Integer> unsortedMap) {
