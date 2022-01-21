@@ -66,6 +66,10 @@ public class LeaderboardCommand implements CommandExecutor, TabCompleter {
 	
 			}
 			
+		} else {
+			
+			sender.sendMessage(Messages.NO_PERMISSIONS);
+			
 		}
 
 		return false;
