@@ -13,11 +13,11 @@ public class HGStatistics extends JavaPlugin {
 	public void onEnable() {
 		plugin = this;
 
-		Bukkit.getConsoleSender().sendMessage("§6Initialisiere HG-Statistics...");
+		Bukkit.getConsoleSender().sendMessage("§6Initialising HG-Statistics...");
 
 		init(Bukkit.getPluginManager());
 
-		Bukkit.getConsoleSender().sendMessage("§aHG-Statistics geladen!");
+		Bukkit.getConsoleSender().sendMessage("§aHG-Statistics initialised!");
 	}
 
 	private void init(PluginManager pluginManager) {

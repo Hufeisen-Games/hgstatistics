@@ -9,6 +9,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 
+import main.java.de.hufeisen_games.repo.hgstatistics.Messages;
 import main.java.de.hufeisen_games.repo.hgstatistics.commands.leaderboard.BlocksWalked;
 import main.java.de.hufeisen_games.repo.hgstatistics.commands.leaderboard.OnlineTime;
 import main.java.de.hufeisen_games.repo.hgstatistics.commands.type.SubCommand;
@@ -35,12 +36,23 @@ public class LeaderboardCommand implements CommandExecutor, TabCompleter{
 		} else {
 			
 			if(!executeSubCommand(args[0], sender, command, label, args)) {
-				sender.sendMessage("§cDer angegebene Sub Befehl existiert nicht. Eine Liste aller Sub Commands kannst du dir mit §a/leaderboard help §canzeigen lassen.");
+				sender.sendMessage(Messages.SUB_COMMAND_NOT_FOUND);
 			}
 			
 		}
 		
 		return false;
+	}
+	
+	@Override
+	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+		
+		if(args.length == 0) {
+			return new ArrayList<String>(subCommands.keySet());
+		}
+		
+		return null;
+		
 	}
 	
 	private void addSubCommand(String name, SubCommand subCommand) {
@@ -62,13 +74,6 @@ public class LeaderboardCommand implements CommandExecutor, TabCompleter{
 			return false;
 			
 		}
-		
-	}
-
-	@Override
-	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
-		
-		return new ArrayList<String>(subCommands.keySet());
 		
 	}
 }
