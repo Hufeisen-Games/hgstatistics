@@ -11,18 +11,18 @@ import org.bukkit.command.CommandSender;
 
 import main.java.de.hufeisen_games.repo.hgstatistics.commands.type.SubCommand;
 
-public class Deaths implements SubCommand{
+public class Bells implements SubCommand{
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		
-		sender.sendMessage("------------- Leaderboard (Deaths) -------------");
+		sender.sendMessage("------------- Leaderboard (Bells) -------------");
 		
 		TreeMap<Integer, String> playerTime = new TreeMap<Integer, String>();
 		
 		for(OfflinePlayer p : Bukkit.getOfflinePlayers()) {
 			
-			playerTime.put(p.getStatistic(Statistic.DEATHS), p.getName());
+			playerTime.put(p.getStatistic(Statistic.BELL_RING), p.getName());
 			
 		}
 		
@@ -34,7 +34,7 @@ public class Deaths implements SubCommand{
 			      
 				if(entry.getValue() == name) {
 					place--;
-					sender.sendMessage("Platz "+place+" | "+name + ": " + entry.getKey()+" Tode");
+					sender.sendMessage("Platz "+place+" | "+name + ": " + entry.getKey());
 					break;
 				}
 			}

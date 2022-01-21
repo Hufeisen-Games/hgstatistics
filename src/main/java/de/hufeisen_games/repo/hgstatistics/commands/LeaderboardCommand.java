@@ -10,7 +10,12 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 
 import main.java.de.hufeisen_games.repo.hgstatistics.Messages;
+import main.java.de.hufeisen_games.repo.hgstatistics.commands.leaderboard.Jump;
+import main.java.de.hufeisen_games.repo.hgstatistics.commands.leaderboard.Bells;
 import main.java.de.hufeisen_games.repo.hgstatistics.commands.leaderboard.BlocksWalked;
+import main.java.de.hufeisen_games.repo.hgstatistics.commands.leaderboard.Deaths;
+import main.java.de.hufeisen_games.repo.hgstatistics.commands.leaderboard.Kills;
+import main.java.de.hufeisen_games.repo.hgstatistics.commands.leaderboard.NoteBlocksInteract;
 import main.java.de.hufeisen_games.repo.hgstatistics.commands.leaderboard.OnlineTime;
 import main.java.de.hufeisen_games.repo.hgstatistics.commands.type.SubCommand;
 
@@ -24,6 +29,11 @@ public class LeaderboardCommand implements CommandExecutor, TabCompleter{
 		
 		addSubCommand("onlinetime", new OnlineTime());
 		addSubCommand("blockswalked", new BlocksWalked());
+		addSubCommand("noteblocks", new NoteBlocksInteract());
+		addSubCommand("kills", new Kills());
+		addSubCommand("deaths", new Deaths());
+		addSubCommand("jump", new Jump());
+		addSubCommand("bells", new Bells());
 	}
 	
 	@Override

@@ -34,7 +34,7 @@ public class BlocksWalked implements SubCommand{
 			      
 				if(entry.getValue() == name) {
 					place--;
-					sender.sendMessage("Platz "+place+" | "+name + ": " + entry.getKey()+" Blöcke");
+					sender.sendMessage("Platz "+place+" | "+name + ": " + entry.getKey()/100+" BlÃ¶cke");
 					break;
 				}
 			}
