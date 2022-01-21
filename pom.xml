@@ -36,8 +36,8 @@
 				<configuration>
 					<relocations>
 						<relocation>
-							<pattern>de.tr7zw.changeme.nbtapi</pattern>
-							<shadedPattern>com.github.ChallengePlugin.libarys</shadedPattern>
+							<pattern>org.bstats</pattern>
+							<shadedPattern>main.java.de.hufeisen_games.repo.hgstatistics</shadedPattern>
 						</relocation>
 					</relocations>
 				</configuration>
@@ -67,6 +67,13 @@
 			<artifactId>spigot-api</artifactId>
 			<version>1.17-R0.1-SNAPSHOT</version>
 			<scope>provided</scope>
+		</dependency>
+		<!-- bstats -->
+		<dependency>
+			<groupId>org.bstats</groupId>
+			<artifactId>bstats-bukkit</artifactId>
+			<version>2.2.1</version>
+			<scope>compile</scope>
 		</dependency>
 	</dependencies>
 </project>

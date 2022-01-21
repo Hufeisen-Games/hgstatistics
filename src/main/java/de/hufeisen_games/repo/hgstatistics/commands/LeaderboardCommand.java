@@ -52,16 +52,20 @@ public class LeaderboardCommand implements CommandExecutor, TabCompleter {
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
-		if (args.length != 1) {
-			
-			executeSubCommand("help", sender, command, label, args);
-			
-		} else {
-
-			if (!executeSubCommand(args[0], sender, command, label, args)) {
-				sender.sendMessage(Messages.SUB_COMMAND_NOT_FOUND);
+		if(sender.hasPermission("hgstatistics.leaderboard")) {
+		
+			if (args.length != 1) {
+				
+				executeSubCommand("help", sender, command, label, args);
+				
+			} else {
+	
+				if (!executeSubCommand(args[0], sender, command, label, args)) {
+					sender.sendMessage(Messages.SUB_COMMAND_NOT_FOUND);
+				}
+	
 			}
-
+			
 		}
 
 		return false;
