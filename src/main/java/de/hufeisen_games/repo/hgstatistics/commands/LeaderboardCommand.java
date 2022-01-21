@@ -106,7 +106,7 @@ public class LeaderboardCommand implements CommandExecutor, TabCompleter {
 			}
 		}
 
-		return null;
+		return new ArrayList<String>();
 
 	}
 
