@@ -13,7 +13,9 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
+import org.bukkit.scheduler.BukkitRunnable;
 
+import main.java.de.hufeisen_games.repo.hgstatistics.HGStatistics;
 import main.java.de.hufeisen_games.repo.hgstatistics.Messages;
 import main.java.de.hufeisen_games.repo.hgstatistics.commands.leaderboard.Bells;
 import main.java.de.hufeisen_games.repo.hgstatistics.commands.leaderboard.BlocksWalked;
@@ -115,7 +117,16 @@ public class LeaderboardCommand implements CommandExecutor, TabCompleter {
 		if (subCommands.get(name.toLowerCase()) != null) {
 			
 			if(sender.hasPermission("hgstatistics.leaderboard."+name) || sender.hasPermission("hgstatistics.leaderboard.all") || name.equalsIgnoreCase("help")) {
-				subCommands.get(name.toLowerCase()).onCommand(sender, command, label, args);
+				
+				new BukkitRunnable() {
+					
+					@Override
+					public void run() {
+						
+						subCommands.get(name.toLowerCase()).onCommand(sender, command, label, args);
+						
+					}
+				}.runTaskAsynchronously(HGStatistics.getPlugin());
 			} else {
 				sender.sendMessage(Messages.NO_PERMISSIONS);
 			}

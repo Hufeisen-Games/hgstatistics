@@ -9,6 +9,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.EntityType;
 
+import main.java.de.hufeisen_games.repo.hgstatistics.Messages;
 import main.java.de.hufeisen_games.repo.hgstatistics.commands.LeaderboardCommand;
 import main.java.de.hufeisen_games.repo.hgstatistics.commands.type.SubCommand;
 
@@ -18,6 +19,8 @@ public class EntityKills implements SubCommand{
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		
 		HashMap<String, Integer> playerStatistics = new HashMap<>();
+		
+		sender.sendMessage(Messages.LAGG_WARNING);
 		
 		for(OfflinePlayer p : Bukkit.getOfflinePlayers()) {
 			
