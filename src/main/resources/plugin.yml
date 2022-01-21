@@ -9,7 +9,6 @@ authors: [Hufeisen]
 commands:
   leaderboard:
      description: Shows you the leaderboards!
-     usage: "Usage: /leaderboard help"
      
 permissions:
    hgstatistics.updateNotification:
