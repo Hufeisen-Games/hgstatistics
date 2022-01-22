@@ -5,5 +5,6 @@ public class Messages {
 			   				   NO_PERMISSIONS = "§cYou do not have permission to do that!",
 			   				   LAGG_WARNING = "§c§lAttention! Depending on the number of players, this scoreboard may appear late!",
 			   				   PREFIX = "§6HG-Statistics §7| ",
-			   				   BUFFER_IS_LOADING = "§c§lCurrently statistics are being loaded into the cache. Some statistics may be incorrect.";
+			   				   BUFFER_IS_LOADING = "§c§lCurrently statistics are being loaded into the cache. Some statistics may be incorrect.",
+			   				   CACHE_UPDATE = "§aThe cache is reloaded. This takes a moment!";
 }

@@ -31,6 +31,7 @@ import main.java.de.hufeisen_games.repo.hgstatistics.commands.leaderboard.Jump;
 import main.java.de.hufeisen_games.repo.hgstatistics.commands.leaderboard.Kills;
 import main.java.de.hufeisen_games.repo.hgstatistics.commands.leaderboard.NoteBlocks;
 import main.java.de.hufeisen_games.repo.hgstatistics.commands.leaderboard.OnlineTime;
+import main.java.de.hufeisen_games.repo.hgstatistics.commands.leaderboard.UpdateCache;
 import main.java.de.hufeisen_games.repo.hgstatistics.commands.type.SubCommand;
 
 public class LeaderboardCommand implements CommandExecutor, TabCompleter {
@@ -55,6 +56,7 @@ public class LeaderboardCommand implements CommandExecutor, TabCompleter {
 		addSubCommand("onlinetime", new OnlineTime());
 		
 		addSubCommand("help", new HelpCommand());
+		addSubCommand("updatecache", new UpdateCache());
 	}
 
 	private void addSubCommand(String name, SubCommand subCommand) {
@@ -99,7 +101,13 @@ public class LeaderboardCommand implements CommandExecutor, TabCompleter {
 				for(String name : subCommands.keySet()) {
 					
 					if(sender.hasPermission("hgstatistics.leaderboard."+name) || sender.hasPermission("hgstatistics.leaderboard.all") || name.equalsIgnoreCase("help")) {
-						tab.add(name);
+						if(!name.equalsIgnoreCase("updatecache")) {
+							tab.add(name);
+						} else {
+							if(sender.hasPermission("hgstatistics.updateleaderboard")) {
+								tab.add(name);
+							}
+						}
 					}
 					
 				}
@@ -124,7 +132,7 @@ public class LeaderboardCommand implements CommandExecutor, TabCompleter {
 					public void run() {
 						
 						subCommands.get(name.toLowerCase()).onCommand(sender, command, label, args);
-						if(StatisticBuffer.isLoading) {
+						if(StatisticBuffer.isLoading && !(name.equalsIgnoreCase("help") || name.equalsIgnoreCase("updatecache"))) {
 							sender.sendMessage(Messages.BUFFER_IS_LOADING);
 						}
 						
