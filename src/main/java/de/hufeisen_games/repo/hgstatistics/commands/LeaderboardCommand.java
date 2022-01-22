@@ -75,10 +75,6 @@ public class LeaderboardCommand implements CommandExecutor, TabCompleter {
 			} else {
 				if (!executeSubCommand(args[0], sender, command, label, args)) {
 					sender.sendMessage(Messages.SUB_COMMAND_NOT_FOUND);
-				} else {
-					if(StatisticBuffer.isLoading) {
-						sender.sendMessage(Messages.BUFFER_IS_LOADING);
-					}
 				}
 	
 			}
@@ -128,6 +124,9 @@ public class LeaderboardCommand implements CommandExecutor, TabCompleter {
 					public void run() {
 						
 						subCommands.get(name.toLowerCase()).onCommand(sender, command, label, args);
+						if(StatisticBuffer.isLoading) {
+							sender.sendMessage(Messages.BUFFER_IS_LOADING);
+						}
 						
 					}
 				}.runTaskAsynchronously(HGStatistics.getPlugin());

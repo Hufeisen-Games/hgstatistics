@@ -1,7 +1,6 @@
 package main.java.de.hufeisen_games.repo.hgstatistics;
 
 import java.util.HashMap;
-import java.util.logging.Level;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -28,6 +27,8 @@ public class StatisticBuffer {
 			@Override
 			public void run() {
 				
+				Bukkit.getConsoleSender().sendMessage(Messages.PREFIX+"§aLoading statistics to cache...");
+				
 				for (OfflinePlayer p : Bukkit.getOfflinePlayers()) {
 
 					int items = 0;
@@ -41,7 +42,7 @@ public class StatisticBuffer {
 					craftedItems.put(p.getName(), items);
 				}
 				
-				HGStatistics.getPlugin().getLogger().log(Level.INFO, Messages.PREFIX+"§61/4 Finished...");
+				Bukkit.getConsoleSender().sendMessage(Messages.PREFIX+"§61/4 Finished...");
 				
 				for (OfflinePlayer p : Bukkit.getOfflinePlayers()) {
 
@@ -57,7 +58,7 @@ public class StatisticBuffer {
 
 				}
 				
-				HGStatistics.getPlugin().getLogger().log(Level.INFO, Messages.PREFIX+"§62/4 Finished...");
+				Bukkit.getConsoleSender().sendMessage(Messages.PREFIX+"§62/4 Finished...");
 				
 				for (OfflinePlayer p : Bukkit.getOfflinePlayers()) {
 
@@ -73,7 +74,7 @@ public class StatisticBuffer {
 
 				}
 				
-				HGStatistics.getPlugin().getLogger().log(Level.INFO, Messages.PREFIX+"§63/4 Finished...");
+				Bukkit.getConsoleSender().sendMessage(Messages.PREFIX+"§63/4 Finished...");
 				
 				for(OfflinePlayer p : Bukkit.getOfflinePlayers()) {
 					
@@ -91,7 +92,7 @@ public class StatisticBuffer {
 					
 				}
 				
-				HGStatistics.getPlugin().getLogger().log(Level.INFO, Messages.PREFIX+"§6Cache update complete!");
+				Bukkit.getConsoleSender().sendMessage(Messages.PREFIX+"§6Cache update complete!");
 				isLoading = false;
 			}
 			

@@ -22,7 +22,6 @@ public class HGStatistics extends JavaPlugin {
 
 		Bukkit.getConsoleSender().sendMessage("§aHG-Statistics initialised!");
 		
-		Bukkit.getConsoleSender().sendMessage(Messages.PREFIX+"§aLoading statistics to cache...");
 		StatisticBuffer.loadIntoCache();
 	}
 
