@@ -17,7 +17,7 @@ public class BrokenBlocks implements SubCommand {
 
 		HashMap<String, Integer> playerStatistics = StatisticBuffer.getStatisticFromCache(Statistic.MINE_BLOCK);
 
-		LeaderboardCommand.sendStatistics(sender, "Items Broken", playerStatistics);
+		LeaderboardCommand.sendStatistics(sender, "Blocks Broken", playerStatistics);
 
 		return false;
 	}

@@ -17,10 +17,15 @@ public class HelpCommand implements SubCommand{
 		sender.sendMessage("");
 		sender.sendMessage("§aDo §6§o/leaderboard <statistic> §ato display you a leaderboard with the given statistic!");
 		sender.sendMessage("");
+		sender.sendMessage("§c§lSub Commands:");
+		sender.sendMessage(" §7- §e§ohelp");
+		sender.sendMessage(" §7- §e§oreloadcache");
+		sender.sendMessage(" §7- §e§oany statistic");
+		sender.sendMessage("");
 		sender.sendMessage("§c§lAll Statistics:");
 		for(String subCommand : LeaderboardCommand.subCommands.keySet()) {
 			
-			if(!subCommand.equals("help")) {
+			if(!subCommand.equals("help") && !subCommand.equals("reloadcache")) {
 				sender.sendMessage(" §7- §e§o"+subCommand);
 			}
 			
