@@ -54,7 +54,6 @@ public class BufferUpdateListener implements Listener {
 					
 					for(ItemStack s : e.getWhoClicked().getInventory().getContents()) {
 						if(s != null) {
-							System.out.println(s.getType());
 							if(s.getType() == craftedItemType) {
 								
 								newAmount += s.getAmount();
@@ -62,9 +61,6 @@ public class BufferUpdateListener implements Listener {
 							}
 						}
 					}
-					System.out.println(craftedItemType);
-					System.out.println();
-					System.out.println(newAmount);
 					StatisticBuffer.addToCache(Statistic.CRAFT_ITEM, e.getWhoClicked().getName(), newAmount-currentAmount);
 					
 				}
