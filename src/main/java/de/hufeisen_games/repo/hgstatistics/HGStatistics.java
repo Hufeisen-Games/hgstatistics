@@ -6,6 +6,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import main.java.de.hufeisen_games.repo.hgstatistics.commands.LeaderboardCommand;
+import main.java.de.hufeisen_games.repo.hgstatistics.listener.BufferUpdateListener;
 import main.java.de.hufeisen_games.repo.hgstatistics.listener.PlayerJoinListener;
 
 public class HGStatistics extends JavaPlugin {
@@ -20,6 +21,9 @@ public class HGStatistics extends JavaPlugin {
 		init(Bukkit.getPluginManager());
 
 		Bukkit.getConsoleSender().sendMessage("§aHG-Statistics initialised!");
+		
+		Bukkit.getConsoleSender().sendMessage(Messages.PREFIX+"§aLoading statistics to cache...");
+		StatisticBuffer.loadIntoCache();
 	}
 
 	private void init(PluginManager pluginManager) {
@@ -34,6 +38,7 @@ public class HGStatistics extends JavaPlugin {
 		
 		// Listener
 		Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(), plugin);
+		Bukkit.getPluginManager().registerEvents(new BufferUpdateListener(), plugin);
 	}
 
 	public static HGStatistics getPlugin() {

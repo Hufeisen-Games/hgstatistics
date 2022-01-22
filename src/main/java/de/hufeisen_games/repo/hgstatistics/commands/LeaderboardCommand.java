@@ -17,6 +17,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import main.java.de.hufeisen_games.repo.hgstatistics.HGStatistics;
 import main.java.de.hufeisen_games.repo.hgstatistics.Messages;
+import main.java.de.hufeisen_games.repo.hgstatistics.StatisticBuffer;
 import main.java.de.hufeisen_games.repo.hgstatistics.commands.leaderboard.Bells;
 import main.java.de.hufeisen_games.repo.hgstatistics.commands.leaderboard.BlocksWalked;
 import main.java.de.hufeisen_games.repo.hgstatistics.commands.leaderboard.BrokenBlocks;
@@ -72,9 +73,12 @@ public class LeaderboardCommand implements CommandExecutor, TabCompleter {
 				executeSubCommand("help", sender, command, label, args);
 				
 			} else {
-	
 				if (!executeSubCommand(args[0], sender, command, label, args)) {
 					sender.sendMessage(Messages.SUB_COMMAND_NOT_FOUND);
+				} else {
+					if(StatisticBuffer.isLoading) {
+						sender.sendMessage(Messages.BUFFER_IS_LOADING);
+					}
 				}
 	
 			}

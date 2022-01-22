@@ -10,6 +10,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
 import main.java.de.hufeisen_games.repo.hgstatistics.Messages;
+import main.java.de.hufeisen_games.repo.hgstatistics.StatisticBuffer;
 import main.java.de.hufeisen_games.repo.hgstatistics.commands.LeaderboardCommand;
 import main.java.de.hufeisen_games.repo.hgstatistics.commands.type.SubCommand;
 
@@ -18,11 +19,11 @@ public class BrokenBlocks implements SubCommand {
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
-		HashMap<String, Integer> playerStatistics = new HashMap<>();
+		HashMap<String, Integer> playerStatistics = StatisticBuffer.getStatisticFromCache(Statistic.MINE_BLOCK);//new HashMap<>();
 
 		sender.sendMessage(Messages.LAGG_WARNING);
 		
-		for (OfflinePlayer p : Bukkit.getOfflinePlayers()) {
+		/*for (OfflinePlayer p : Bukkit.getOfflinePlayers()) {
 
 			int blocks = 0;
 
@@ -34,7 +35,7 @@ public class BrokenBlocks implements SubCommand {
 
 			playerStatistics.put(p.getName(), blocks);
 
-		}
+		}*/
 
 		LeaderboardCommand.sendStatistics(sender, "Items Broken", playerStatistics);
 
