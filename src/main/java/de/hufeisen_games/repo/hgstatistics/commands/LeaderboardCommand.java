@@ -56,7 +56,7 @@ public class LeaderboardCommand implements CommandExecutor, TabCompleter {
 		addSubCommand("onlinetime", new OnlineTime());
 		
 		addSubCommand("help", new HelpCommand());
-		addSubCommand("updatecache", new UpdateCache());
+		addSubCommand("reloadcache", new UpdateCache());
 	}
 
 	private void addSubCommand(String name, SubCommand subCommand) {
@@ -101,10 +101,10 @@ public class LeaderboardCommand implements CommandExecutor, TabCompleter {
 				for(String name : subCommands.keySet()) {
 					
 					if(sender.hasPermission("hgstatistics.leaderboard."+name) || sender.hasPermission("hgstatistics.leaderboard.all") || name.equalsIgnoreCase("help")) {
-						if(!name.equalsIgnoreCase("updatecache")) {
+						if(!name.equalsIgnoreCase("reloadcache")) {
 							tab.add(name);
 						} else {
-							if(sender.hasPermission("hgstatistics.updateleaderboard")) {
+							if(sender.hasPermission("hgstatistics.reloadleaderboard")) {
 								tab.add(name);
 							}
 						}
@@ -132,7 +132,7 @@ public class LeaderboardCommand implements CommandExecutor, TabCompleter {
 					public void run() {
 						
 						subCommands.get(name.toLowerCase()).onCommand(sender, command, label, args);
-						if(StatisticBuffer.isLoading && !(name.equalsIgnoreCase("help") || name.equalsIgnoreCase("updatecache"))) {
+						if(StatisticBuffer.isLoading && !(name.equalsIgnoreCase("help") || name.equalsIgnoreCase("reloadcache"))) {
 							sender.sendMessage(Messages.BUFFER_IS_LOADING);
 						}
 						

@@ -6,5 +6,6 @@ public class Messages {
 			   				   LAGG_WARNING = "§c§lAttention! Depending on the number of players, this scoreboard may appear late!",
 			   				   PREFIX = "§6HG-Statistics §7| ",
 			   				   BUFFER_IS_LOADING = "§c§lCurrently statistics are being loaded into the cache. Some statistics may be incorrect.",
-			   				   CACHE_UPDATE = "§aThe cache is reloaded. This takes a moment!";
+			   				   CACHE_UPDATE = "§aThe cache is being reloaded. This takes a moment!",
+			   				   BUFFER_ALREADY_RELODING = "§cThe cache is already being reloaded!";
 }

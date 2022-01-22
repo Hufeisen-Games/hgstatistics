@@ -14,26 +14,29 @@ public class UpdateCache implements SubCommand{
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		
-		if(sender.hasPermission("hgstatistics.updateleaderboard")) {
-			
-			sender.sendMessage(Messages.CACHE_UPDATE);
-			long time = System.currentTimeMillis();  
-			StatisticBuffer.loadIntoCache();
-			
-			new BukkitRunnable() {
+		if(sender.hasPermission("hgstatistics.reloadleaderboard")) {
+			if(!StatisticBuffer.isLoading) {
+				sender.sendMessage(Messages.CACHE_UPDATE);
+				long time = System.currentTimeMillis();  
+				StatisticBuffer.loadIntoCache();
 				
-				@Override
-				public void run() {
+				new BukkitRunnable() {
 					
-					if(!StatisticBuffer.isLoading) {
+					@Override
+					public void run() {
 						
-						sender.sendMessage("§a§lCache Reloaded! §7(§lTime: §6"+((System.currentTimeMillis() - time)/1000)+"."+((System.currentTimeMillis() - time)%1000)+"s§7)");
-						this.cancel();
+						if(!StatisticBuffer.isLoading) {
+							
+							sender.sendMessage("§a§lCache Reloaded! §7(§lTime: §6"+((System.currentTimeMillis() - time)/1000)+"."+((System.currentTimeMillis() - time)%1000)+"s§7)");
+							this.cancel();
+						}
+						
+						
 					}
-					
-					
-				}
-			}.runTaskTimerAsynchronously(HGStatistics.getPlugin(), 0, 20);
+				}.runTaskTimerAsynchronously(HGStatistics.getPlugin(), 0, 20);
+			} else {
+				sender.sendMessage(Messages.BUFFER_ALREADY_RELODING);
+			}
 			
 		} else {
 			sender.sendMessage(Messages.NO_PERMISSIONS);

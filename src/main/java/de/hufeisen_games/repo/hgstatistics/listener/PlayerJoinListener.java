@@ -43,6 +43,11 @@ public class PlayerJoinListener implements Listener {
 					
 					e.getPlayer().spigot().sendMessage(updateMessage);
 					e.getPlayer().sendMessage("");
+					e.getPlayer().sendMessage("§6New Features:");
+					for(String s : getUpdateLog()) {
+						e.getPlayer().sendMessage(" §7- §e"+s);
+					}
+					e.getPlayer().sendMessage("");
 					e.getPlayer().sendMessage("§7--------- §6§lHGStatistics §6§oV. "
 							+ HGStatistics.getPlugin().getDescription().getVersion() + " §6(Update) §7---------");
 					e.getPlayer().sendMessage("");
@@ -69,6 +74,27 @@ public class PlayerJoinListener implements Listener {
 			in.close();
 
 			return a.toString();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	private String[] getUpdateLog() {
+		URL url;
+		try {
+			url = new URL("https://codeinfo.hufeisen-games.de/hgstatistics/updatelog.hgi");
+
+			URLConnection urlConn = url.openConnection();
+			BufferedReader in = new BufferedReader(new InputStreamReader(urlConn.getInputStream(), "UTF-8"));
+			String inputLine;
+			StringBuilder a = new StringBuilder();
+			while ((inputLine = in.readLine()) != null)
+				a.append(inputLine);
+			in.close();
+
+			return a.toString().split(";");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
