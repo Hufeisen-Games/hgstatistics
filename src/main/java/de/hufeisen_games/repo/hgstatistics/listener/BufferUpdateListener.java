@@ -1,5 +1,6 @@
 package main.java.de.hufeisen_games.repo.hgstatistics.listener;
 
+import org.bukkit.GameMode;
 import org.bukkit.Statistic;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
@@ -19,7 +20,9 @@ public class BufferUpdateListener implements Listener {
 	@EventHandler
 	public void onBlockBreak(BlockBreakEvent e) {
 
-		StatisticBuffer.addToCache(Statistic.MINE_BLOCK, e.getPlayer().getName(), 1);
+		if(e.getPlayer().getGameMode() == GameMode.SURVIVAL) {
+			StatisticBuffer.addToCache(Statistic.MINE_BLOCK, e.getPlayer().getName(), 1);
+		}
 
 	}
 

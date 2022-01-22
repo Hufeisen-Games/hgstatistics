@@ -6,7 +6,6 @@ import org.bukkit.Statistic;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
-import main.java.de.hufeisen_games.repo.hgstatistics.Messages;
 import main.java.de.hufeisen_games.repo.hgstatistics.StatisticBuffer;
 import main.java.de.hufeisen_games.repo.hgstatistics.commands.LeaderboardCommand;
 import main.java.de.hufeisen_games.repo.hgstatistics.commands.type.SubCommand;
