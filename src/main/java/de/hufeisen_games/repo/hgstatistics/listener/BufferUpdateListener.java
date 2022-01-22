@@ -19,54 +19,57 @@ public class BufferUpdateListener implements Listener {
 
 	@EventHandler
 	public void onBlockBreak(BlockBreakEvent e) {
-
-		if(e.getPlayer().getGameMode() == GameMode.SURVIVAL) {
-			StatisticBuffer.addToCache(Statistic.MINE_BLOCK, e.getPlayer().getName(), 1);
+		if (!StatisticBuffer.isLoading) {
+			if (e.getPlayer().getGameMode() == GameMode.SURVIVAL) {
+				StatisticBuffer.addToCache(Statistic.MINE_BLOCK, e.getPlayer().getName(), 1);
+			}
 		}
 
 	}
 
 	@EventHandler
 	public void onItemCrafted(CraftItemEvent e) {
+		if (!StatisticBuffer.isLoading) {
+			ItemStack craftedItem = e.getInventory().getResult();
+			Inventory Inventory = e.getInventory();
+			ClickType clickType = e.getClick();
 
-		ItemStack craftedItem = e.getInventory().getResult();
-		Inventory Inventory = e.getInventory();
-		ClickType clickType = e.getClick();
-		
-		int realAmount = craftedItem.getAmount();
-		
-		if (clickType.isShiftClick()) {
-			
-			int lowerAmount = craftedItem.getMaxStackSize() + 1000;
-			
-			for (ItemStack actualItem : Inventory.getContents()) {
-				
-				if (!actualItem.getType().isAir() && lowerAmount > actualItem.getAmount()
-						&& !actualItem.getType().equals(craftedItem.getType()))
-					lowerAmount = actualItem.getAmount();
+			int realAmount = craftedItem.getAmount();
+
+			if (clickType.isShiftClick()) {
+
+				int lowerAmount = craftedItem.getMaxStackSize() + 1000;
+
+				for (ItemStack actualItem : Inventory.getContents()) {
+
+					if (!actualItem.getType().isAir() && lowerAmount > actualItem.getAmount()
+							&& !actualItem.getType().equals(craftedItem.getType()))
+						lowerAmount = actualItem.getAmount();
+				}
+
+				realAmount = lowerAmount * craftedItem.getAmount();
 			}
 
-			realAmount = lowerAmount * craftedItem.getAmount();
+			StatisticBuffer.addToCache(Statistic.CRAFT_ITEM, e.getWhoClicked().getName(), realAmount);
 		}
-
-		StatisticBuffer.addToCache(Statistic.CRAFT_ITEM, e.getWhoClicked().getName(), realAmount);
-
 	}
-	
+
 	@EventHandler
 	public void onItemBreak(PlayerItemBreakEvent e) {
-		
-		StatisticBuffer.addToCache(Statistic.BREAK_ITEM, e.getPlayer().getName(), 1);
-		
+		if (!StatisticBuffer.isLoading) {
+			StatisticBuffer.addToCache(Statistic.BREAK_ITEM, e.getPlayer().getName(), 1);
+		}
 	}
-	
+
 	@EventHandler
 	public void onEntityKill(EntityDeathEvent e) {
-		
-		if(e.getEntity().getKiller().getType() == EntityType.PLAYER) {
-			StatisticBuffer.addToCache(Statistic.KILL_ENTITY, e.getEntity().getKiller().getName(), 1);
+		if (!StatisticBuffer.isLoading) {
+			if (e.getEntity().getKiller() != null) {
+				if (e.getEntity().getKiller().getType() == EntityType.PLAYER) {
+					StatisticBuffer.addToCache(Statistic.KILL_ENTITY, e.getEntity().getKiller().getName(), 1);
+				}
+			}
 		}
-		
 	}
 
 }

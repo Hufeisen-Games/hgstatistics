@@ -27,7 +27,7 @@ public class StatisticBuffer {
 			@Override
 			public void run() {
 				
-				Bukkit.getConsoleSender().sendMessage(Messages.PREFIX+"§aLoading statistics to cache...");
+				Bukkit.getConsoleSender().sendMessage(Messages.PREFIX+"§6Loading statistics to cache...");
 				
 				for (OfflinePlayer p : Bukkit.getOfflinePlayers()) {
 
@@ -91,7 +91,7 @@ public class StatisticBuffer {
 					killedEntitys.put(p.getName(), entitys);
 					
 				}
-				
+				Bukkit.getConsoleSender().sendMessage(Messages.PREFIX+"§64/4 Finished...");
 				Bukkit.getConsoleSender().sendMessage(Messages.PREFIX+"§6Cache update complete!");
 				isLoading = false;
 			}
