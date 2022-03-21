@@ -21,7 +21,6 @@ import main.java.de.hufeisen_games.repo.hgstatistics.StatisticBuffer;
 import main.java.de.hufeisen_games.repo.hgstatistics.commands.leaderboard.Bells;
 import main.java.de.hufeisen_games.repo.hgstatistics.commands.leaderboard.BlocksWalked;
 import main.java.de.hufeisen_games.repo.hgstatistics.commands.leaderboard.BrokenBlocks;
-import main.java.de.hufeisen_games.repo.hgstatistics.commands.leaderboard.CraftItem;
 import main.java.de.hufeisen_games.repo.hgstatistics.commands.leaderboard.Deaths;
 import main.java.de.hufeisen_games.repo.hgstatistics.commands.leaderboard.EntityKills;
 import main.java.de.hufeisen_games.repo.hgstatistics.commands.leaderboard.HelpCommand;
@@ -45,7 +44,7 @@ public class LeaderboardCommand implements CommandExecutor, TabCompleter {
 		addSubCommand("bells", new Bells());
 		addSubCommand("blockswalked", new BlocksWalked());
 		addSubCommand("blocksbroken", new BrokenBlocks());
-		addSubCommand("craftitem", new CraftItem());
+		//addSubCommand("craftitem", new CraftItem());
 		addSubCommand("deaths", new Deaths());
 		addSubCommand("entitykills", new EntityKills());
 		addSubCommand("itembreak", new Itembreak());
