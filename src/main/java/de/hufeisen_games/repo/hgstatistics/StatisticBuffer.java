@@ -1,7 +1,5 @@
 package main.java.de.hufeisen_games.repo.hgstatistics;
 
-import java.util.HashMap;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
@@ -9,140 +7,142 @@ import org.bukkit.Statistic;
 import org.bukkit.entity.EntityType;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.HashMap;
+
 public class StatisticBuffer {
-	
-	private static HashMap<String, Integer> craftedItems = new HashMap<>();
-	private static HashMap<String, Integer> brokenBlocks = new HashMap<>();
-	private static HashMap<String, Integer> itemBroken = new HashMap<>();
-	private static HashMap<String, Integer> killedEntitys = new HashMap<>();
-	
-	public static boolean isLoading = false;
-	
-	public static void loadIntoCache() {
-		
-		isLoading = true;
-		
-		new BukkitRunnable() {
-			
-			@Override
-			public void run() {
-				
-				Bukkit.getConsoleSender().sendMessage(Messages.PREFIX+"§6Loading statistics to cache...");
-				
-				for (OfflinePlayer p : Bukkit.getOfflinePlayers()) {
 
-					int items = 0;
+    private static HashMap<String, Integer> craftedItems = new HashMap<>();
+    private static HashMap<String, Integer> brokenBlocks = new HashMap<>();
+    private static HashMap<String, Integer> itemBroken = new HashMap<>();
+    private static HashMap<String, Integer> killedEntities = new HashMap<>();
 
-					for (Material m : Material.values()) {
+    public static boolean isLoading = false;
 
-						items += p.getStatistic(Statistic.CRAFT_ITEM, m);
+    public static void loadIntoCache() {
 
-					}
+        isLoading = true;
 
-					craftedItems.put(p.getName(), items);
-				}
-				
-				Bukkit.getConsoleSender().sendMessage(Messages.PREFIX+"§61/4 Finished...");
-				
-				for (OfflinePlayer p : Bukkit.getOfflinePlayers()) {
+        new BukkitRunnable() {
 
-					int blocks = 0;
+            @Override
+            public void run() {
 
-					for (Material m : Material.values()) {
-						
-						blocks += p.getStatistic(Statistic.MINE_BLOCK, m);
+                Bukkit.getConsoleSender().sendMessage(Messages.PREFIX + "§6Loading statistics to cache...");
 
-					}
+                for (OfflinePlayer p : Bukkit.getOfflinePlayers()) {
 
-					brokenBlocks.put(p.getName(), blocks);
+                    int items = 0;
 
-				}
-				
-				Bukkit.getConsoleSender().sendMessage(Messages.PREFIX+"§62/4 Finished...");
-				
-				for (OfflinePlayer p : Bukkit.getOfflinePlayers()) {
+                    for (Material m : Material.values()) {
 
-					int items = 0;
+                        items += p.getStatistic(Statistic.CRAFT_ITEM, m);
 
-					for (Material m : Material.values()) {
+                    }
 
-						items += p.getStatistic(Statistic.BREAK_ITEM, m);
+                    craftedItems.put(p.getName(), items);
+                }
 
-					}
+                Bukkit.getConsoleSender().sendMessage(Messages.PREFIX + "§61/4 Finished...");
 
-					itemBroken.put(p.getName(), items);
+                for (OfflinePlayer p : Bukkit.getOfflinePlayers()) {
 
-				}
-				
-				Bukkit.getConsoleSender().sendMessage(Messages.PREFIX+"§63/4 Finished...");
-				
-				for(OfflinePlayer p : Bukkit.getOfflinePlayers()) {
-					
-					int entitys = 0;
-					
-					for(EntityType e : EntityType.values()) {
-						
-						if(e != EntityType.UNKNOWN) {
-							entitys += p.getStatistic(Statistic.KILL_ENTITY, e);
-						}
-						
-					}
-					
-					killedEntitys.put(p.getName(), entitys);
-					
-				}
-				Bukkit.getConsoleSender().sendMessage(Messages.PREFIX+"§64/4 Finished...");
-				Bukkit.getConsoleSender().sendMessage(Messages.PREFIX+"§6Cache update complete!");
-				isLoading = false;
-			}
-			
-		}.runTaskAsynchronously(HGStatistics.getPlugin());
-		
-	}
-	
-	public static void addToCache(Statistic statistic, String playerName, int value) {
-		
-		if(statistic == Statistic.CRAFT_ITEM) {
-			
-			craftedItems.put(playerName, craftedItems.get(playerName)+value);
-			
-		} else if(statistic == Statistic.MINE_BLOCK) {
-			
-			brokenBlocks.put(playerName, brokenBlocks.get(playerName)+value);
-			
-		} else if(statistic == Statistic.BREAK_ITEM) {
-			
-			itemBroken.put(playerName, itemBroken.get(playerName)+value);
-			
-		} else if(statistic == Statistic.KILL_ENTITY) {
-			
-			killedEntitys.put(playerName, killedEntitys.get(playerName)+value);
-			
-		}
-		
-	}
-	
-	public static HashMap<String, Integer> getStatisticFromCache(Statistic statistic) {
-		
-		if (statistic == Statistic.CRAFT_ITEM) {
+                    int blocks = 0;
 
-			return craftedItems;
+                    for (Material m : Material.values()) {
 
-		} else if (statistic == Statistic.MINE_BLOCK) {
+                        blocks += p.getStatistic(Statistic.MINE_BLOCK, m);
 
-			return brokenBlocks;
+                    }
 
-		} else if (statistic == Statistic.BREAK_ITEM) {
+                    brokenBlocks.put(p.getName(), blocks);
 
-			return itemBroken;
+                }
 
-		} else if (statistic == Statistic.KILL_ENTITY) {
+                Bukkit.getConsoleSender().sendMessage(Messages.PREFIX + "§62/4 Finished...");
 
-			return killedEntitys;
+                for (OfflinePlayer p : Bukkit.getOfflinePlayers()) {
 
-		}
-		
-		return null;
-	}
-	
+                    int items = 0;
+
+                    for (Material m : Material.values()) {
+
+                        items += p.getStatistic(Statistic.BREAK_ITEM, m);
+
+                    }
+
+                    itemBroken.put(p.getName(), items);
+
+                }
+
+                Bukkit.getConsoleSender().sendMessage(Messages.PREFIX + "§63/4 Finished...");
+
+                for (OfflinePlayer p : Bukkit.getOfflinePlayers()) {
+
+                    int entities = 0;
+
+                    for (EntityType e : EntityType.values()) {
+
+                        if (e != EntityType.UNKNOWN) {
+                            entities += p.getStatistic(Statistic.KILL_ENTITY, e);
+                        }
+
+                    }
+
+                    killedEntities.put(p.getName(), entities);
+
+                }
+                Bukkit.getConsoleSender().sendMessage(Messages.PREFIX + "§64/4 Finished...");
+                Bukkit.getConsoleSender().sendMessage(Messages.PREFIX + "§6Cache update complete!");
+                isLoading = false;
+            }
+
+        }.runTaskAsynchronously(HGStatistics.getPlugin());
+
+    }
+
+    public static void addToCache(Statistic statistic, String playerName, int value) {
+
+        if (statistic == Statistic.CRAFT_ITEM) {
+
+            craftedItems.put(playerName, craftedItems.get(playerName) + value);
+
+        } else if (statistic == Statistic.MINE_BLOCK) {
+
+            brokenBlocks.put(playerName, brokenBlocks.get(playerName) + value);
+
+        } else if (statistic == Statistic.BREAK_ITEM) {
+
+            itemBroken.put(playerName, itemBroken.get(playerName) + value);
+
+        } else if (statistic == Statistic.KILL_ENTITY) {
+
+            killedEntities.put(playerName, killedEntities.get(playerName) + value);
+
+        }
+
+    }
+
+    public static HashMap<String, Integer> getStatisticFromCache(Statistic statistic) {
+
+        if (statistic == Statistic.CRAFT_ITEM) {
+
+            return craftedItems;
+
+        } else if (statistic == Statistic.MINE_BLOCK) {
+
+            return brokenBlocks;
+
+        } else if (statistic == Statistic.BREAK_ITEM) {
+
+            return itemBroken;
+
+        } else if (statistic == Statistic.KILL_ENTITY) {
+
+            return killedEntities;
+
+        }
+
+        return null;
+    }
+
 }

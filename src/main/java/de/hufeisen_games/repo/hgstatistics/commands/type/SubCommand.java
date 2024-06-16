@@ -5,7 +5,7 @@ import org.bukkit.command.CommandSender;
 
 public interface SubCommand {
 
-	public boolean onCommand(CommandSender sender, Command command, String label, String[] args);
-	
+    boolean onCommand(CommandSender sender, Command command, String label, String[] args);
+
 }
 

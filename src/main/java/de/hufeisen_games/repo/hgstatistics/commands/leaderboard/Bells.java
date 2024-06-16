@@ -1,32 +1,31 @@
 package main.java.de.hufeisen_games.repo.hgstatistics.commands.leaderboard;
 
-import java.util.HashMap;
-
+import main.java.de.hufeisen_games.repo.hgstatistics.commands.LeaderboardCommand;
+import main.java.de.hufeisen_games.repo.hgstatistics.commands.type.SubCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.Statistic;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
-import main.java.de.hufeisen_games.repo.hgstatistics.commands.LeaderboardCommand;
-import main.java.de.hufeisen_games.repo.hgstatistics.commands.type.SubCommand;
+import java.util.HashMap;
 
-public class Bells implements SubCommand{
-	
-	@Override
-	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-		
-		HashMap<String, Integer> playerStatistics = new HashMap<>();
-		
-		for(OfflinePlayer p : Bukkit.getOfflinePlayers()) {
-			
-			playerStatistics.put(p.getName(), p.getStatistic(Statistic.BELL_RING));
-			
-		}
-		
-		LeaderboardCommand.sendStatistics(sender, "Bells", playerStatistics);
-		
-		return false;
-	}
+public class Bells implements SubCommand {
+
+    @Override
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+
+        HashMap<String, Integer> playerStatistics = new HashMap<>();
+
+        for (OfflinePlayer p : Bukkit.getOfflinePlayers()) {
+
+            playerStatistics.put(p.getName(), p.getStatistic(Statistic.BELL_RING));
+
+        }
+
+        LeaderboardCommand.sendStatistics(sender, "Bells", playerStatistics);
+
+        return false;
+    }
 
 }
