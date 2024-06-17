@@ -84,7 +84,7 @@ public class LeaderboardCommand implements CommandExecutor, TabCompleter {
                         if (!name.equalsIgnoreCase("reloadcache")) {
                             tab.add(name);
                         } else {
-                            if (sender.hasPermission("hgstatistics.reloadleaderboard")) {
+                            if (sender.hasPermission("hgstatistics.reloadcache")) {
                                 tab.add(name);
                             }
                         }
@@ -96,7 +96,7 @@ public class LeaderboardCommand implements CommandExecutor, TabCompleter {
             }
         }
 
-        return new ArrayList<String>();
+        return new ArrayList<>();
 
     }
 

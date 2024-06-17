@@ -30,8 +30,8 @@ public class PlayerJoinListener implements Listener {
                 if (e.getPlayer().hasPermission("hgstatistics.updateNotification")) {
 
                     e.getPlayer().sendMessage("");
-                    e.getPlayer().sendMessage("§7--------- §6§lHGStatistics §6§oV. "
-                            + HGStatistics.getPlugin().getDescription().getVersion() + " §6(Update) §7---------");
+                    e.getPlayer().sendMessage("§7-------- §6§lHGStatistics §6§oV. "
+                            + HGStatistics.getPlugin().getDescription().getVersion() + " §6(Update) §7--------");
                     e.getPlayer().sendMessage("");
 
                     TextComponent updateMessage = new TextComponent("§a§lThere is an update available (version §6§l" + version + "§a§l). Press ");
@@ -49,8 +49,8 @@ public class PlayerJoinListener implements Listener {
                         e.getPlayer().sendMessage(" §7- §e" + s);
                     }
                     e.getPlayer().sendMessage("");
-                    e.getPlayer().sendMessage("§7--------- §6§lHGStatistics §6§oV. "
-                            + HGStatistics.getPlugin().getDescription().getVersion() + " §6(Update) §7---------");
+                    e.getPlayer().sendMessage("§7-------- §6§lHGStatistics §6§oV. "
+                            + HGStatistics.getPlugin().getDescription().getVersion() + " §6(Update) §7--------");
                     e.getPlayer().sendMessage("");
 
                 }

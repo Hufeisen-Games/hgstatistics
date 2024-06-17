@@ -1,8 +1,9 @@
 name: HGStatistics
 prefix: HG-Statistics
-version: 1.4.2
+version: 1.5.0
 description: Show you the player stats with a leaderboard!
 website: dc.hufeisen-games.de
+api-version: 1.16
 
 main: main.java.de.hufeisen_games.repo.hgstatistics.HGStatistics
 authors: [ Hufeisen ]
@@ -16,4 +17,10 @@ permissions:
     default: op
   hgstatistics.leaderboard:
     description: Allows you to use the /leaderboard command
+    default: true
+  hgstatistics.leaderboard.all:
+    description: Allows you to use all commands
+    default: true
+  hgstatistics.reloadcache:
+    description: Allows you to reload the leaderboard
     default: op
