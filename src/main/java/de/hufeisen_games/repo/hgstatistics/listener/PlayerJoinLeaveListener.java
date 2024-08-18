@@ -5,18 +5,25 @@ import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.ClickEvent.Action;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.time.Instant;
 import java.util.logging.Level;
 
-public class PlayerJoinListener implements Listener {
+public class PlayerJoinLeaveListener implements Listener {
+
+    FileConfiguration data = YamlConfiguration.loadConfiguration(new File(HGStatistics.getPlugin().getDataFolder(), "data.yml"));
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e) {
@@ -59,6 +66,23 @@ public class PlayerJoinListener implements Listener {
 
         }
 
+        data.set(e.getPlayer().getUniqueId() + ".lastOnline", Instant.now().getEpochSecond());
+        try {
+            data.save(new File(HGStatistics.getPlugin().getDataFolder(), "data.yml"));
+        } catch (IOException ex) {
+            Bukkit.getLogger().log(Level.WARNING, "Could not save data.yml!", ex);
+        }
+
+    }
+
+    @EventHandler
+    public void onPlayerLeave(PlayerQuitEvent e) {
+        data.set(e.getPlayer().getUniqueId() + ".lastOnline", Instant.now().getEpochSecond());
+        try {
+            data.save(new File(HGStatistics.getPlugin().getDataFolder(), "data.yml"));
+        } catch (IOException ex) {
+            Bukkit.getLogger().log(Level.WARNING, "Could not save data.yml!", ex);
+        }
     }
 
     private String getVersion() {

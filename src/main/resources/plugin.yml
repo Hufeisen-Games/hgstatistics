@@ -1,6 +1,6 @@
 name: HGStatistics
 prefix: HG-Statistics
-version: 1.5.0
+version: 1.6.0
 description: Show you the player stats with a leaderboard!
 website: dc.hufeisen-games.de
 api-version: 1.16

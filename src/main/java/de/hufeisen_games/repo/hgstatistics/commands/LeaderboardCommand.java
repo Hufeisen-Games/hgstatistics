@@ -34,6 +34,7 @@ public class LeaderboardCommand implements CommandExecutor, TabCompleter {
         addSubCommand("kills", new Kills());
         addSubCommand("noteblocks", new NoteBlocks());
         addSubCommand("onlinetime", new OnlineTime());
+        addSubCommand("lastseen", new LastOnline());
 
         addSubCommand("help", new HelpCommand());
         addSubCommand("reloadcache", new UpdateCache());
@@ -156,13 +157,28 @@ public class LeaderboardCommand implements CommandExecutor, TabCompleter {
 
     public static HashMap<String, Integer> sortByValue(HashMap<String, Integer> unsortedMap) {
 
-        List<Entry<String, Integer>> list = new LinkedList<Entry<String, Integer>>(unsortedMap.entrySet());
+        List<Entry<String, Integer>> list = new LinkedList<>(unsortedMap.entrySet());
 
         list.sort(Entry.comparingByValue());
 
-        HashMap<String, Integer> sortedMap = new LinkedHashMap<String, Integer>();
+        HashMap<String, Integer> sortedMap = new LinkedHashMap<>();
 
         for (Entry<String, Integer> entry : list) {
+            sortedMap.put(entry.getKey(), entry.getValue());
+        }
+
+        return sortedMap;
+    }
+
+    public static HashMap<String, Long> sortByLongValue(HashMap<String, Long> unsortedMap) {
+
+        List<Entry<String, Long>> list = new LinkedList<>(unsortedMap.entrySet());
+
+        list.sort(Entry.comparingByValue());
+
+        HashMap<String, Long> sortedMap = new LinkedHashMap<>();
+
+        for (Entry<String, Long> entry : list) {
             sortedMap.put(entry.getKey(), entry.getValue());
         }
 

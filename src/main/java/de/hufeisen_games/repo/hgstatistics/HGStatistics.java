@@ -2,7 +2,7 @@ package main.java.de.hufeisen_games.repo.hgstatistics;
 
 import main.java.de.hufeisen_games.repo.hgstatistics.commands.LeaderboardCommand;
 import main.java.de.hufeisen_games.repo.hgstatistics.listener.BufferUpdateListener;
-import main.java.de.hufeisen_games.repo.hgstatistics.listener.PlayerJoinListener;
+import main.java.de.hufeisen_games.repo.hgstatistics.listener.PlayerJoinLeaveListener;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
@@ -35,7 +35,7 @@ public class HGStatistics extends JavaPlugin {
         getCommand("leaderboard").setTabCompleter(lc);
 
         // Listener
-        Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(), plugin);
+        Bukkit.getPluginManager().registerEvents(new PlayerJoinLeaveListener(), plugin);
         Bukkit.getPluginManager().registerEvents(new BufferUpdateListener(), plugin);
     }
 
